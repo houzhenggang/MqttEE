@@ -11,9 +11,6 @@ public class Subscribers {
 
 	final static Logger log = Logger.getLogger(Subscribers.class);
 	
-	
-
-	
 	/*
 	Example how to use: 
 	
@@ -35,8 +32,5 @@ public class Subscribers {
 		log.info("Enter: test/test1 - "+topic);
 		log.info("Leave: test/test1 - "+topic);
 	}*/
-	
-
-	
 
 }

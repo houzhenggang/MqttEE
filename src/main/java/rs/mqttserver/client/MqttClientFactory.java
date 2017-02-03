@@ -16,6 +16,9 @@ public class MqttClientFactory {
 	static String clientId;
 	static MemoryPersistence persistence;
 	private static MqttAsyncClient client;
+	static private Class main_class;
+
+
 
 	final static Logger log = Logger.getLogger(MqttClientFactory.class);
 
@@ -41,7 +44,7 @@ public class MqttClientFactory {
 			/*It�s important to note that the callback needs to be set before the client connects to the MQTT broker,
 			 *  otherwise you could lose messages, especially after resuming a persistent session.*/
 			
-			MqttDispatcher.init();
+			MqttDispatcher.init(main_class);
 			String[] t=MqttDispatcher.getTopicsArray();
 			int[] q = MqttDispatcher.getQosList();
 			
@@ -86,5 +89,9 @@ public class MqttClientFactory {
 				Prop.getInstance().getValue("mqtt_lwt_msg").getBytes(), Integer.parseInt(Prop.getInstance().getValue("mqtt_lwt_qos")), true);
 		connOpts.setKeepAliveInterval(Integer.parseInt(Prop.getInstance().getValue("mqtt_keepalive")));
 		return connOpts;
+	}
+
+	public synchronized static void setMainClass(Class c) {
+		main_class = c;
 	}
 }

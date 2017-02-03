@@ -24,12 +24,12 @@ public class LoggingService {
 	}
 
 	
-	//topic=ioplac/{deviceid}/logging/alert/{level}   qos=1
+	//topic=root/{deviceid}/logging/alert/{level}   qos=1
 	public static void alert(LogLevel lvl,String message) {
 		 logCommon(false,"alert",lvl,message);
 	}
 
-	//topic=ioplac/{deviceid}/logging/activity/{level}   qos=1
+	//topic=root/{deviceid}/logging/activity/{level}   qos=1
 	public static void activity(LogLevel lvl,String message) {
 		 logCommon(false,"activity",lvl,message);
 	}

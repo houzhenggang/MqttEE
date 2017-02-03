@@ -33,10 +33,17 @@ public class MqttDispatcher implements MqttCallback {
 	ExecutorService cachedPool = Executors.newCachedThreadPool();
 	ExecutorService singleThreadExec = Executors.newSingleThreadExecutor();
 	
-	public static void init(){		
+	public static void init(Class c){
+		String scan_path;
+
+		if(c != null) scan_path = c.getPackage().getName();
+		else scan_path = "rs.mqttserver";
+
+		log.info("Scanning: "+scan_path);
+
 		Reflections reflections = new Reflections( 
 			    new ConfigurationBuilder().setUrls( 
-			    ClasspathHelper.forPackage( "rs.mqttserver") ).setScanners(
+			    ClasspathHelper.forPackage( scan_path ) ).setScanners(
 			    new MethodAnnotationsScanner() ) );
 			Set<Method> methodsAnnotated = reflections.getMethodsAnnotatedWith(Subscribe.class);
 
