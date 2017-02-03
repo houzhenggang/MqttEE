@@ -57,10 +57,12 @@ public class MqttDispatcher implements MqttCallback {
 				String topic =((Subscribe) mt.getDeclaredAnnotation(Subscribe.class)).topic();
 				int qos =((Subscribe) mt.getDeclaredAnnotation(Subscribe.class)).qos();
 
+				if(!topic.contains("/")) topic = Prop.getInstance().getValue(topic);
+
 				topicslist.add(topic);
 				qoslist.add(qos);
 				
-				//Mqtt wildcard support enable
+				//Mqtt wildcard support
 				topic = topic.replaceAll("\\+", "[a-zA-Z0-9]+");
 				topic  = topic.replaceAll("/#", "[a-zA-Z0-9-/]*");
 				topic  = topic.replaceAll("#", "[a-zA-Z0-9-/]*");
