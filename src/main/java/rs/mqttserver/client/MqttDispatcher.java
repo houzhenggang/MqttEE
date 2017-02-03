@@ -63,6 +63,10 @@ public class MqttDispatcher implements MqttCallback {
 				qoslist.add(qos);
 				
 				//Mqtt wildcard support
+				topicslist.add(topic);
+				qoslist.add(qos);
+				
+				//Mqtt wildcard support enable
 				topic = topic.replaceAll("\\+", "[a-zA-Z0-9]+");
 				topic  = topic.replaceAll("/#", "[a-zA-Z0-9-/]*");
 				topic  = topic.replaceAll("#", "[a-zA-Z0-9-/]*");
