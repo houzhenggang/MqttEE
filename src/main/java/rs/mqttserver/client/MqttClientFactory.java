@@ -35,6 +35,12 @@ public class MqttClientFactory {
 		return client;
 	}
 
+	public synchronized static MqttAsyncClient getConnectedMqttAsyncClient(Class c) throws MqttException {
+		main_class = c;
+		return  getConnectedMqttAsyncClient();
+	}
+
+
 	public static synchronized MqttAsyncClient getConnectedMqttAsyncClient()
 			throws MqttException {
 		if (client == null || !client.isConnected()) {

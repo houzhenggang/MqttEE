@@ -28,11 +28,11 @@ public class Main {
 	public static void mqttReceive() {
 		try {
 			MqttAsyncClient pcli = MqttClientFactory
-					.getConnectedMqttAsyncClient();
-		
+					.getConnectedMqttAsyncClient(Main.class);
+
 		} catch (MqttException e) {
 			log.error(e.getMessage(), e);
-		} 
+		}
 
 	}
 
